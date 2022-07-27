@@ -7,4 +7,4 @@ Created on Wed Jul 27 13:33:11 2022
 def sum(a,b):
     print(a+b)
     
-sum(4,5)
+sum(9,5)
