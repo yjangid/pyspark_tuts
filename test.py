@@ -6,6 +6,6 @@ Created on Wed Jul 27 13:27:26 2022
 """
 
 def test_func(para1):
-    print(para1)
+    print("Hello ", para1)
 
-test_func("Hello")
+test_func("Yogesh")
