@@ -1,0 +1,17 @@
+1. Why Parquet file format is used?
+2. Explain Spark Architecture.
+3. Cache and Persist method -> Optimized method
+4. Repartition and Coalesce -> WHich one is more optimal
+5. Broadcasting -> join and others.
+6. Dataset and Dataframe -> Difference
+7. All memory levels.
+8. Read modes and Save Modes.
+9. Map and Flatemap -> Diffrences with examples
+10. Reduce and ReduceByKey -> Differences
+11. Catalyst Optimizer.
+12. Broadcast and accumulator -> Why we use shared variable
+13. All joins in SparkSQL
+14. RDD and Dataframe -> Difference
+15. What is DAG
+16. How to save a Dataframe into a specific file format like Avro, ORC, Parquet, JSON, CSV, XML.
+17. Spark submit Commands.
