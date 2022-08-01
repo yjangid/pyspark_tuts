@@ -1,17 +1,112 @@
 1. Why Parquet file format is used?
+Ans:- Data security as Data is not human readable.
+	  Low storage consumption.
+	  Efficient in reading Data in less time as it is columnar storage and minimizes latency.
+	  Supports advanced nested data structures. ...
+	  Parquet files can be further compressed.
+	  
+----------------------------------------------------------------------------------------------------------
 2. Explain Spark Architecture.
+Ans:- Apache Spark works in a master-slave architecture where the master is called “Driver” and slaves are called “Workers”.
+ When you run a Spark application, Spark Driver creates a context that is an entry point to your application, 
+and all operations (transformations and actions) are executed on worker nodes, and the resources are managed by Cluster Manager.
+----------------------------------------------------------------------------------------------------------
 3. Cache and Persist method -> Optimized method
+
+Storage Level    Space used  CPU time  In memory  On-disk  Serialized   Recompute some partitions
+----------------------------------------------------------------------------------------------------
+MEMORY_ONLY          High        Low       Y          N        N         Y    
+MEMORY_ONLY_SER      Low         High      Y          N        Y         Y
+MEMORY_AND_DISK      High        Medium    Some       Some     Some      N
+MEMORY_AND_DISK_SER  Low         High      Some       Some     Y         N
+DISK_ONLY            Low         High      N          Y        Y         N
+Scala
+Some Points to note on Persistence
+Spark automatically monitors every persist() and cache() calls you make and it checks usage on each node and drops persisted data
+if not used or using least-recently-used (LRU) algorithm. As discussed in one of the above section you can also manually remove using
+unpersist() method.
+Spark caching and persistence is just one of the optimization techniques to improve the performance of Spark jobs.
+For RDD cache() default storage level is ‘MEMORY_ONLY‘ but, for DataFrame and Dataset, default is ‘MEMORY_AND_DISK‘
+On Spark UI, the Storage tab shows where partitions exist in memory or disk across the cluster.
+Dataset cache() is an alias for persist(StorageLevel.MEMORY_AND_DISK)
+Caching of Spark DataFrame or Dataset is a lazy operation, meaning a DataFrame will not be cached until you trigger an action. 
+
+----------------------------------------------------------------------------------------------------------
 4. Repartition and Coalesce -> WHich one is more optimal
+	One important point to note is, Spark repartition() and coalesce() are very expensive operations as they shuffle the data across many partitions hence try to minimize repartition as much as possible.
+    One important point to note is, Spark repartition() and coalesce() are very expensive operations as they shuffle the data 
+	across many partitions hence try to minimize repartition as much as possible.
+	
+	Spark RDD repartition() method is used to increase or decrease the partitions. and the repartition re-distributes 
+	the data(as shown below) from all partitions 	which is full shuffle leading to very expensive operation when dealing 
+	with billions and trillions of data.
+	
+	Spark RDD coalesce() is used only to reduce the number of partitions. This is optimized or improved version of 
+	repartition() where the movement of the data across the partitions is lower using coalesce.
+	
+	
+----------------------------------------------------------------------------------------------------------
 5. Broadcasting -> join and others.
+	Broadcast variables are read-only shared variables that are cached and available on all nodes in a cluster in-order to access 
+	or use by the tasks. Instead of sending this data along with every task, spark distributes broadcast variables to the machine 
+	using efficient broadcast algorithms to reduce communication costs.
+
+----------------------------------------------------------------------------------------------------------
 6. Dataset and Dataframe -> Difference
+	Datasets are not supported by pyspark
+
+----------------------------------------------------------------------------------------------------------
 7. All memory levels.
+Storage Level    Space used  CPU time  In memory  On-disk  Serialized   Recompute some partitions
+----------------------------------------------------------------------------------------------------
+MEMORY_ONLY          High        Low       Y          N        N         Y    
+MEMORY_ONLY_SER      Low         High      Y          N        Y         Y
+MEMORY_AND_DISK      High        Medium    Some       Some     Some      N
+MEMORY_AND_DISK_SER  Low         High      Some       Some     Y         N
+DISK_ONLY            Low         High      N          Y        Y         N
+
+----------------------------------------------------------------------------------------------------------
 8. Read modes and Save Modes.
+	Read Mode -  load or read the file through load method
+	SaveMode - save the data by using saveAsText() or write option
+
+
+----------------------------------------------------------------------------------------------------------
 9. Map and Flatemap -> Diffrences with examples
+	Map is object to object
+	flatmap - it's flatten the object like list, tuple and dataframe
+
+----------------------------------------------------------------------------------------------------------
 10. Reduce and ReduceByKey -> Differences
+
+	reduce - return just single output
+	reduceByKey() - it perform the operation based on key ex like word count
+
+----------------------------------------------------------------------------------------------------------
 11. Catalyst Optimizer.
+The Catalyst optimizer is a crucial component of Apache Spark. It optimizes structural queries – 
+expressed in SQL, or via the DataFrame/Dataset APIs – which can reduce the runtime of programs and save costs
+
+----------------------------------------------------------------------------------------------------------
 12. Broadcast and accumulator -> Why we use shared variable
+
+----------------------------------------------------------------------------------------------------------
 13. All joins in SparkSQL
+	1. Inner Join
+	2. Left Join
+	3. Right Join
+	4. Full Outer Join
+	5. leftSemi Join - show the left side table records only which is matched
+	6. antileft Join -  show only left side table records which not matched
+
+----------------------------------------------------------------------------------------------------------
 14. RDD and Dataframe -> Difference
+
+----------------------------------------------------------------------------------------------------------
 15. What is DAG
+
+----------------------------------------------------------------------------------------------------------
 16. How to save a Dataframe into a specific file format like Avro, ORC, Parquet, JSON, CSV, XML.
+
+----------------------------------------------------------------------------------------------------------
 17. Spark submit Commands.
