@@ -27,3 +27,7 @@ SELECT MAX(SALARY) AS SALARY, DEPT_ID FROM testdb.employee GROUP BY DEPT_ID;
 -- GET HIGHEST SALRY FROM DEPT
 SELECT MAX(SALARY) AS SALARY, DEPT_ID FROM testdb.employee GROUP BY DEPT_ID ORDER BY SALARY DESC LIMIT 1;
 
+-- ROW_NUMBER () FUNCTION - The ROW_NUMBER() function in MySQL is used to returns the sequential number for each row within its partition
+-- We can use the ROW_NUMBER() function to assign a sequence number for each record using the below statement:
+-- ROW_NUMBER() OVER (<partition_definition> <order_definition>)  
+
