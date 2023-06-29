@@ -1,0 +1,4 @@
+key: employee
+relative_path: data/departments.csv
+output_format: parquet
+partitioned_by: country

@@ -21,8 +21,8 @@ class SparkContext:
 
 def main():
     
-    file_name = os.path.basename(__file__)
-    print(f"Module - {file_name}")
+    module_name = os.path.basename(__file__)
+    print(f"Module - {module_name}")
 
 if __name__ == "__main__":
     main()
