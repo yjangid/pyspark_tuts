@@ -42,6 +42,10 @@ def create_df_from_rdd(spark):
     DFFromRDD1.show()
     
     DFFromRDD1.printSchema()
+
+    out_path = r"D:\\git_pyspark\\pyspark_tuts\\MyPySparkProject\\outfiles"
+    print("output_path - ", out_path)
+    # DFFromRDD1.write.format("csv").mode('overwrite').save(out_path)
     
     """
     ################# Output of DFFromRDD1 #################
