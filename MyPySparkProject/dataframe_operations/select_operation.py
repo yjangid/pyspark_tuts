@@ -146,6 +146,36 @@ def fill_empty_columns(df):
     """
 #################################################################################################
 #################################################################################################
+def order_by_desc(df):
+    df.orderBy(df.age.desc()).show(5)
+    """
+        #### output #############
+        +----------+-----------+---------+---+--------------------+----------+---------+----------+------+
+        |first_name|middle_name|last_name|age|            email_id|is_skilled| Industry|Address_id|gender|
+        +----------+-----------+---------+---+--------------------+----------+---------+----------+------+
+        |     Sarah|         J.|  Johnson| 45|sarah.johnson@exa...|      true|       HR|         6|     F|
+        |      Noah|       null|    Green| 43|noah.green@exampl...|      true|Marketing|        19|     M|
+        |     David|       null|    Brown| 42|david.brown@examp...|      true|  Finance|         3|     M|
+        |     Emily|       null| Anderson| 41|emily.anderson@ex...|      true|       IT|        10|     F|
+        |   Michael|       null|      Lee| 39|michael.lee@examp...|     false|       IT|         5|     M|
+    """
+#################################################################################################
+#################################################################################################
+
+def get_first_row_from_df(df):
+    """
+        The show() method is used to display the contents of a DataFrame, but the first() method returns the first row of the DataFrame as a Row object. 
+        Therefore, calling show() on the result of first() will result in an error.
+        df.first() is mostly equivalant to df.show(1)
+    """
+    new_df = df.first()
+    print(new_df)
+    """
+        output -
+        Row(first_name='John', middle_name='A.', last_name='Smith', age=35, email_id='john.smith@example.com', is_skilled=True, Industry='IT', Address_id=1, gender='M')
+    """
+#################################################################################################
+#################################################################################################
 
 def main():
     findspark.init()
@@ -157,7 +187,9 @@ def main():
         # get_distinct_values(spark, df)
         # cross_tab_pair_frequency(df)
         # drop_duplicate_from_df(df)
-        fill_empty_columns(df)
+        # fill_empty_columns(df)
+        # order_by_desc(df)
+        get_first_row_from_df(df)
 
 
 #################################################################################################
